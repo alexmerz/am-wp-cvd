@@ -13,6 +13,11 @@ Version: 0.0.1
 
 namespace SempleControlClient;
 
-add_action( 'admin_notices', function() {
-    echo "<div class='notice notice-success is-dismissible'><p>Semple Control Client is active</p></div>";
-} );
+require_once './includes/Plugins.php';
+
+\add_action( 'rest_api_init', function () {
+    \register_rest_route( 'semplecontrol/v1', '/plugins', array(
+      'methods' => 'GET',
+      'callback' => __NAMESPACE__ . 'get_plugins'
+    ) );
+  } );
