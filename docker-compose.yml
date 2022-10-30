@@ -2,7 +2,7 @@ services:
   wordpress:
     image: wordpress:latest
     environment:
-      - WORDPRESS_TABLE_PREFIX=-wp_
+      - WORDPRESS_TABLE_PREFIX=wp_
       - WORDPRESS_DB_HOST=mysql
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=wordpress
