@@ -7,5 +7,12 @@ if ( ! function_exists( '\get_plugins' ) ) {
 }
 
 function get_plugins() {
-    return \get_plugins();
+    $plugins = \get_plugins();
+    foreach( $plugins as $key => $plugin ) {
+        $plugins[$key]['__SEMPLECONTROL'] = false;
+        if ( $plugin['Name'] == $GLOBALS['semple_control_plugin_name'] ) {
+            $plugins[$key]['__SEMPLECONTROL'] = true;
+        }
+    }
+    return $plugins;
 }
