@@ -13,11 +13,11 @@ Version: 0.0.1
 
 namespace SempleControlClient;
 
+require_once __DIR__ . '/includes/Plugins.php';
+
 // We need to track which plugin we are no matter of naming
 $plugin_data = \get_plugin_data( __FILE__ );
 $semple_control_plugin_name = $plugin_data['Name'];
-
-require_once __DIR__ . '/includes/Plugins.php';
 
 \add_action( 'rest_api_init', function () {
     \register_rest_route( 'semplecontrol/v1', '/plugins', array(
@@ -25,3 +25,4 @@ require_once __DIR__ . '/includes/Plugins.php';
       'callback' => __NAMESPACE__ . '\get_plugins'
     ) );
   } );
+  
