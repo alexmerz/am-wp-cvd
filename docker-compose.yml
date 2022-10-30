@@ -14,8 +14,10 @@ services:
       - '80:80'
     volumes:
       - wordpress_multi:/var/www/html
-      - ./.htaccess:/var/www/html/.htaccess
       - ./plugins:/var/www/html/wp-content/plugins
+      - type: bind 
+        source: ./.htaccess
+        target: /var/www/html/.htaccess
     depends_on:
       - mysql
   mysql:
