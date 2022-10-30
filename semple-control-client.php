@@ -13,6 +13,10 @@ Version: 0.0.1
 
 namespace SempleControlClient;
 
+// We need to track which plugin we are no matter of naming
+$plugin_data = get_plugin_data( __FILE__ );
+$semple_control_plugin_name = $plugin_data['Name'];
+
 require_once __DIR__ . '/includes/Plugins.php';
 
 \add_action( 'rest_api_init', function () {
