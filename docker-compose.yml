@@ -1,0 +1,48 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    environment:
+      - WORDPRESS_TABLE_PREFIX=-wp_
+      - WORDPRESS_DB_HOST=mysql
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DEBUG=1
+      - WORDPRESS_DEBUG_LOG=true
+      - WORDPRESS_DEBUG_DISPLAY=true
+    ports:
+      - '80:80'
+    volumes:
+      - wordpress_multi:/var/www/html
+      - ./.htaccess:/var/www/html/.htaccess
+      - ./plugins:/var/www/html/wp-content/plugins
+    depends_on:
+      - mysql
+  mysql:
+    image: mariadb:latest
+    command: "--default-authentication-plugin=mysql_native_password"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+    expose:
+      - 3306
+      - 33060
+    volumes:
+      - db-data-multi:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=wordpress
+      - PMA_PASSWORD=wordpress
+      - PMA_ARBITRARY=1
+    depends_on:
+      - mysql
+volumes:
+  wordpress_multi:
+  db-data-multi:
