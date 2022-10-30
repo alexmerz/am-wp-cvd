@@ -18,6 +18,6 @@ require_once __DIR__ . '/includes/Plugins.php';
 \add_action( 'rest_api_init', function () {
     \register_rest_route( 'semplecontrol/v1', '/plugins', array(
       'methods' => 'GET',
-      'callback' => __NAMESPACE__ . 'get_plugins'
+      'callback' => __NAMESPACE__ . '\get_plugins'
     ) );
   } );
