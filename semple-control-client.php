@@ -13,7 +13,7 @@ Version: 0.0.1
 
 namespace SempleControlClient;
 
-require_once './includes/Plugins.php';
+require_once __DIR__ . '/includes/Plugins.php';
 
 \add_action( 'rest_api_init', function () {
     \register_rest_route( 'semplecontrol/v1', '/plugins', array(
