@@ -13,21 +13,23 @@ Version: 0.0.1
 
 namespace SempleControlClient;
 
-require_once __DIR__ . '/includes/Plugins.php';
-
 $config = array(
+  'dir'         => plugin_dir_path( __FILE__ ),  
   'plugin_name' => 'Semple Control Client',
+  'api_route'   => 'semplecontrol/v1'
 );
+
+require_once $config['dir'] . '/includes/Plugins.php';
 
 // We need to track which plugin we are no matter of the naming
 $plugin_data = \get_plugin_data( __FILE__ );
 $config['plugin_name'] = $plugin_data['Name'];
 
-\add_action( 'rest_api_init', function () {
-    \register_rest_route( 'semplecontrol/v1', '/plugins', array(
+\add_action( 'rest_api_init', function () use ( $config ) {
+    \register_rest_route( $config['api_route'], '/plugins', array(
       'methods' => 'GET',
-      'callback' => function() {
-          get_plugins($config);
+      'callback' => function() use ( $config ) {
+          return get_plugins($config);
         }
     ) );
   } );
