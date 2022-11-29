@@ -1,1 +1,1 @@
-# semple-control
+# CvD Plugin
