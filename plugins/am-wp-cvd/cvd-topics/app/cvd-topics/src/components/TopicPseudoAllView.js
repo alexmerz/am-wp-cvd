@@ -10,16 +10,15 @@ class TopicPseudoAllView extends React.Component {
         this.state = { post_status : 'draft', posts: [] };
 
         this.changePostStatus = this.changePostStatus.bind(this);
-        this.fetchPosts = this.fetchPosts.bind(this);   
-        
-        // reload list ervery 60 seconds
-        setInterval(() => {
-            this.fetchPosts(this.state.post_status);
-        }, 60000);
+        this.fetchPosts = this.fetchPosts.bind(this);           
     }
 
     componentDidMount() {
         this.fetchPosts(this.state.post_status);
+        // reload list ervery 60 seconds
+        setInterval(() => {
+            this.fetchPosts(this.state.post_status);
+        }, 60000);        
     }
 
     render() {
@@ -28,12 +27,12 @@ class TopicPseudoAllView extends React.Component {
         return (
             <Card>
                 <Card.Header>
-                <Nav variant="tabs" defaultActiveKey={this.id_attrib('#draft-', topic.id)}>
+                <Nav variant="tabs" defaultActiveKey='#draft-all'>
                     <Nav.Item>
-                        <Nav.Link href={this.id_attrib('#draft-', topic.id)} onClick={this.changePostStatus}>Entwurf</Nav.Link>
+                        <Nav.Link href='#draft-all' onClick={this.changePostStatus}>Entwurf</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link href={this.id_attrib('#published-', topic.id)} onClick={this.changePostStatus}>Publiziert</Nav.Link>
+                        <Nav.Link href='#published-all' onClick={this.changePostStatus}>Publiziert</Nav.Link>
                     </Nav.Item>
                 </Nav>
                 </Card.Header>
@@ -43,10 +42,6 @@ class TopicPseudoAllView extends React.Component {
                 </Card.Body>            
         </Card>
         );
-    }
-
-    id_attrib(id, attrib) {
-        return id + attrib;
     }
 
     changePostStatus(event) {
