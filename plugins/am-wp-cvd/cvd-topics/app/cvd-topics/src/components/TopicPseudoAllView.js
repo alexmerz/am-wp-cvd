@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import TopicPostsListView from './TopicPostsListView';
 
-class TopicView extends React.Component {
+class TopicPseudoAllView extends React.Component {
   
     constructor(props) {
         super(props)
@@ -23,7 +23,6 @@ class TopicView extends React.Component {
     }
 
     render() {
-        const topic = this.props.topic;
         const posts = this.state.posts;    
     
         return (
@@ -39,7 +38,7 @@ class TopicView extends React.Component {
                 </Nav>
                 </Card.Header>
                 <Card.Body>
-                    <Card.Title>Thema: {topic.name}</Card.Title>
+                    <Card.Title>Alle</Card.Title>
                     <TopicPostsListView posts={posts} /> 
                 </Card.Body>            
         </Card>
@@ -60,7 +59,7 @@ class TopicView extends React.Component {
 
     fetchPosts(status) {
         window.fetch(
-            'http://localhost/wp-json/wp/v2/posts?cvd-topics=' + this.props.topic.id + '&status=' + status,
+            'http://localhost/wp-json/wp/v2/posts?status=' + status,
             {
                 headers: {
                     'X-WP-Nonce': this.props.nonce
@@ -78,4 +77,4 @@ class TopicView extends React.Component {
     } 
 }
 
-export default TopicView;
+export default TopicPseudoAllView;

@@ -6,7 +6,7 @@ class TopicPostListEntryView extends React.Component {
         const post = this.props.post;
         return (
             <ListGroup.Item>
-                {post.post_title}
+                {post.title.rendered}
             </ListGroup.Item>
         );
     }
