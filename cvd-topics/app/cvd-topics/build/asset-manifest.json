@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/css/main.44f8b8b5.css",
-    "main.js": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/js/main.8e0729c2.js",
+    "main.js": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/js/main.c040ede0.js",
     "index.html": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/index.html",
     "main.44f8b8b5.css.map": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/css/main.44f8b8b5.css.map",
-    "main.8e0729c2.js.map": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/js/main.8e0729c2.js.map"
+    "main.c040ede0.js.map": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/js/main.c040ede0.js.map"
   },
   "entrypoints": [
     "static/css/main.44f8b8b5.css",
-    "static/js/main.8e0729c2.js"
+    "static/js/main.c040ede0.js"
   ]
 }

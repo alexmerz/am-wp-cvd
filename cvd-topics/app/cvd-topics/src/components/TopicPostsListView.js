@@ -4,12 +4,10 @@ import TopicPostListEntryView from './TopicPostListEntryView';
 
 class TopicPostsListView extends React.Component {
     render() {
-        const posts = [];
-        this.props.posts.forEach(element => {
-            if(element.post_status === this.props.status)
-                posts.push(element);
-        });
-        const childs = posts.map((post) => <TopicPostListEntryView post={post} key={post.ID}/>);
+        if( !Array.isArray(this.props.posts) ||  this.props.posts.length === 0 ) {
+            return (<div> Keine Artikel </div>);
+        }
+        const childs = this.props.posts.map((post) => <TopicPostListEntryView post={post} key={post.id}/>);
         return (
             <ListGroup variant="flush">
                 {childs}
