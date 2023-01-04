@@ -38,8 +38,8 @@ class TopicPseudoAllView extends React.Component {
                 </Card.Header>
                 <Card.Body>
                     <Card.Title>Alle</Card.Title>
-                    <TopicPostsListView posts={posts} /> 
-                </Card.Body>            
+                    <TopicPostsListView posts={posts} />
+                </Card.Body>           
         </Card>
         );
     }
@@ -54,7 +54,7 @@ class TopicPseudoAllView extends React.Component {
 
     fetchPosts(status) {
         window.fetch(
-            'http://localhost/wp-json/wp/v2/posts?status=' + status,
+            '/wp-json/wp/v2/posts?status=' + status,
             {
                 headers: {
                     'X-WP-Nonce': this.props.nonce

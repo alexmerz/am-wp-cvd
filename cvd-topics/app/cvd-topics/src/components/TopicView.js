@@ -60,7 +60,7 @@ class TopicView extends React.Component {
 
     fetchPosts(status) {
         window.fetch(
-            'http://localhost/wp-json/wp/v2/posts?cvd-topics=' + this.props.topic.id + '&status=' + status,
+            '/wp-json/wp/v2/posts?cvd-topics=' + this.props.topic.id + '&status=' + status,
             {
                 headers: {
                     'X-WP-Nonce': this.props.nonce

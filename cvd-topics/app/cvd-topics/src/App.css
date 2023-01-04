@@ -1,0 +1,15 @@
+.card {
+    max-width:400px;
+    max-height:450px;
+    font-size: 14px;
+}
+
+.list-group {
+    max-height: 320px;
+    overflow-y: scroll;
+}
+
+.card-title.h5 {
+    font-weight: bold;
+    font-size: 14px;
+}
