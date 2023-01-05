@@ -54,14 +54,14 @@ class Topics {
             'update_item' => __( 'Update Topic' ),
             'add_new_item' => __( 'Add New Topic' ),
             'new_item_name' => __( 'New Topic Name' ),
-            'separate_items_with_commas' => __( 'Separate topics with commas' ),
+            // 'separate_items_with_commas' => __( 'Separate topics with commas' ),
             'add_or_remove_items' => __( 'Add or remove topics' ),
             'choose_from_most_used' => __( 'Choose from the most used topics' ),
             'menu_name' => 'CvD-Themen'
         ); 
 
         \register_taxonomy('cvd-topics', 'post', array(
-            'hierarchical' => false,
+            'hierarchical' => true,
             'labels' => $labels,
             'show_ui' => true,
             'show_in_rest' => true,
@@ -69,7 +69,8 @@ class Topics {
             'show_in_quick_edit' => true,
             'update_count_callback' => '_update_post_term_count',
             'query_var' => true,
-            'rewrite' => array( 'slug' => 'cvd-topic' )
+            'rewrite' => array( 'slug' => 'cvd-topic' ),
+            'meta_box_cb' => 'post_categories_meta_box'
         ));        
     }
 }
