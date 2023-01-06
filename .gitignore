@@ -21,6 +21,3 @@ node_modules/
 *.log
 *.sql
 *.sqlite
-
-# ignore build directories and files
-build/
