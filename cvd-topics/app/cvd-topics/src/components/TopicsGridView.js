@@ -1,41 +1,48 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import CardGroup from 'react-bootstrap/CardGroup';
+import Spinner from 'react-bootstrap/Spinner';
 import TopicView from './TopicView';
-import TopicPseudoAllView from './TopicPseudoAllView';
 
-class TopicsGridView extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {topics: []};
-    }
+function TopicsGridView(props) {
+    const [topics, setTopics] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    componentDidMount() {
+    useEffect(() => {
+        setLoading(true);
         window.fetch('/wp-json/wp/v2/cvd-topics',
             {
                 headers: {
-                    'X-WP-Nonce': this.props.nonce
+                    'X-WP-Nonce': props.nonce
                 }
             })
-            .then(response => response.json())
+            .then((response) => {
+                setLoading(false);
+                return response.json();
+            })
             .then(
-                (topics) => {
-                    this.setState({topics: topics});
+                (_topics) => {
+                    let topics = [{ // pseudo topic = all without a cvd topic
+                        id: -1,
+                        name: "Alle",
+                    }];
+                    topics = topics.concat(_topics);
+                    setTopics(topics);
                 },
                 (error) => {
                     console.log(error);
                 }
             );
-    }
+    }, [props.nonce]);
 
-    render() {        
-        const topics = this.state.topics.map((topic) => <TopicView topic={topic} key={topic.id} nonce={this.props.nonce}/>);
-        return (
+    const childs = topics.map((topic) => <TopicView topic={topic} key={topic.id} nonce={props.nonce}/>);
+    return (
+        <div>
+            {loading && <Spinner animation="border" role="status" />}
             <CardGroup>
-                <TopicPseudoAllView key="_all" nonce={this.props.nonce}/>
-                {topics}
+                {childs}
             </CardGroup>
-        );
-    }
+        </div>
+    );  
 }
 
 export default TopicsGridView;

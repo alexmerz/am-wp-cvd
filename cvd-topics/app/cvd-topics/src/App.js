@@ -1,3 +1,5 @@
+import {DndProvider} from 'react-dnd';
+import {HTML5Backend} from 'react-dnd-html5-backend';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,7 +13,12 @@ function App() {
 
   return (
     <div className="App">
-      <TopicsGridView nonce={nonce}/>
+      <div>
+        <a href="/wp-admin/edit-tags.php?taxonomy=cvd-topics" target="_blank" rel="noreferrer">CVD-Themen anlegen/verwalten</a>
+      </div>
+      <DndProvider backend={HTML5Backend}>
+        <TopicsGridView nonce={nonce}/>
+      </DndProvider>
     </div>
   );
 }

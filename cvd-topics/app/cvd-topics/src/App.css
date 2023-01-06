@@ -13,3 +13,7 @@
     font-weight: bold;
     font-size: 14px;
 }
+
+.navbar-brand {
+    font-size: 16px !important;
+}
