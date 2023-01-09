@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import Pagination from 'react-bootstrap/Pagination';
 import Toast from 'react-bootstrap/Toast';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Spinner from 'react-bootstrap/Spinner';
 import TopicPostsListView from './TopicPostsListView';
@@ -27,14 +28,6 @@ function TopicView(props) {
             });
         }
     }));
-
-    function changePostStatus() {
-        var ns = 'draft';
-        if(post_status === 'draft') {
-            ns = 'publish';     
-        }
-        setPostStatus(ns);
-    }
 
     function setCvdTopic(postid, callback) {
         setLoading(true);
@@ -101,10 +94,6 @@ function TopicView(props) {
         );    
     }, [post_status, currentPage, props]);
 
-    function id_attrib(prefix, id) {
-        return prefix + id;
-    }
-
     function onDrag(item) {
         // immediately remove the item from the list
         fetchPosts();
@@ -141,19 +130,36 @@ function TopicView(props) {
             <Card.Header>
                 <Navbar>
                     <Container fluid>
-                    <Navbar.Brand>{props.topic.name}</Navbar.Brand>
-                    <Nav variant="pills" defaultActiveKey={id_attrib('#draft-', props.topic.id)} classname="d-flex">
-                        <Nav.Item>
-                            <Nav.Link href={id_attrib('#draft-', props.topic.id)} onClick={changePostStatus} size="sm">Entwurf</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link href={id_attrib('#published-', props.topic.id)} onClick={changePostStatus} size="sm">Publiziert</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                    {loading &&<Spinner animation="border" role="status" size="sm">
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>}
-                                                      
+                        <Navbar.Brand>{props.topic.name}</Navbar.Brand>
+                        {loading &&<Spinner animation="border" role="status" size="sm">
+                                    <span className="visually-hidden">Loading...</span>
+                                </Spinner>}
+                        <ButtonGroup>
+                            <ToggleButton
+                                size="sm"   
+                                key="draft"
+                                id={"status-draft" + props.topic.id}
+                                type="radio"
+                                value="draft"
+                                variant="outline-secondary"
+                                name={"post_status" + props.topic.id}
+                                checked={post_status === "draft"}
+                                onChange={(e) => setPostStatus(e.currentTarget.value)}>
+                                Entwurf
+                            </ToggleButton>
+                            <ToggleButton
+                                size="sm"
+                                key="publish"
+                                id={"status-publish" + props.topic.id}
+                                type="radio"
+                                value="publish"
+                                variant="outline-secondary"
+                                name={"post_status" + props.topic.id}
+                                checked={post_status === "publish"}
+                                onChange={(e) => setPostStatus(e.currentTarget.value)}>
+                                Publiziert
+                            </ToggleButton>
+                        </ButtonGroup>                                                      
                     </Container>
                 </Navbar>
             </Card.Header>
