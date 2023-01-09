@@ -107,10 +107,13 @@ function TopicView(props) {
 
     function onDrag(item) {
         // immediately remove the item from the list
-        const new_posts = posts.filter((post) => post.id !== item.id);
-        setPosts(new_posts);
         fetchPosts();
         return;
+    }
+
+    function onDragEnd(item) {
+        const new_posts = posts.filter((post) => post.id !== item.id);
+        setPosts(new_posts);
     }
 
     useEffect(() => {
@@ -155,7 +158,7 @@ function TopicView(props) {
                 </Navbar>
             </Card.Header>
             <Card.Body>
-                <TopicPostsListView posts={posts} topic={props.topic.id} nonce={props.nonce} onDrag={onDrag}/> 
+                <TopicPostsListView posts={posts} topic={props.topic.id} nonce={props.nonce} onDrag={onDrag} onDragEnd={onDragEnd}/> 
                 {(totalPages>0) && <Pagination>
                     <Pagination.First onClick={() => setCurrentPage(1)} disabled={(currentPage === 1)}/>
                     <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} disabled={(currentPage === 1)}/>
