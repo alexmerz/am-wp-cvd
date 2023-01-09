@@ -11,6 +11,25 @@ class Topics {
     public function __construct() {
         \add_action( 'admin_menu', [ $this, 'plugin_menu' ] );    
         \add_action( 'init', [ $this, 'create_topics_nonhierarchical_taxonomy' ], 0 );
+        
+        \add_filter( 'rest_post_query',[ $this, 'rest_post_query_notopics' ], 10, 2 );
+    }
+
+    /** 
+     * If no_cd_topics=true is set in the request args, we add a condition to the 
+     * request to only look for posts that do not have any topics.
+     */
+    public function rest_post_query_notopics( $args, $request ) {
+        if ( 'true' === $request->get_param( 'no-cvd-topics' ) ) {
+            if( !isset( $args['tax_query'] ) ) {
+                $args['tax_query'] = [];
+            }
+            $args['tax_query'][] = [
+                'taxonomy' => 'cvd-topics',
+                'operator' => 'NOT EXISTS'
+            ];
+        }
+        return $args;
     }
 
     public function plugin_menu() {

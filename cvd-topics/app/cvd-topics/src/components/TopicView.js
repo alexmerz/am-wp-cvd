@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import Button from 'react-bootstrap/Button';
+import Pagination from 'react-bootstrap/Pagination';
 import Toast from 'react-bootstrap/Toast';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
@@ -9,10 +11,14 @@ import TopicPostsListView from './TopicPostsListView';
 import {useDrop} from 'react-dnd';
 
 function TopicView(props) {
+    const limit = 20;
     const [post_status, setPostStatus] = useState('draft');
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [toast, setToast] = useState(null);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);     
 
     const [, drop] = useDrop(() => ({
         accept: "cvd-topics-listitem",
@@ -64,9 +70,11 @@ function TopicView(props) {
     const fetchPosts = useCallback(() => {
         setLoading(true);
         // we need a special handling for topic id = -1 - it represents "all topics without a cvd topic"
-        let url = '/wp-json/wp/v2/posts?status=' + post_status; 
+        let url = '/wp-json/wp/v2/posts?per_page=' + limit + '&page=' + currentPage + '&status=' + post_status; 
         if( props.topic.id !== -1 ) {
             url = url + '&cvd-topics=' + props.topic.id;
+        } else {
+            url = url + '&no-cvd-topics=true';
         }
         window.fetch(
             url,
@@ -77,6 +85,7 @@ function TopicView(props) {
             }) 
         .then((response) => {
             setLoading(false);
+            setTotalPages(parseInt(response.headers.get('X-Wp-Totalpages')));
             return response.json();
         })
         .then(
@@ -87,7 +96,7 @@ function TopicView(props) {
                 console.log(error);
             }
         );    
-    }, [post_status, props]);
+    }, [post_status, currentPage, props]);
 
     function id_attrib(prefix, id) {
         return prefix + id;
@@ -122,10 +131,10 @@ function TopicView(props) {
                     <Navbar.Brand>{props.topic.name}</Navbar.Brand>
                     <Nav variant="pills" defaultActiveKey={id_attrib('#draft-', props.topic.id)} classname="d-flex">
                         <Nav.Item>
-                            <Nav.Link href={id_attrib('#draft-', props.topic.id)} onClick={changePostStatus}>Entwurf</Nav.Link>
+                            <Nav.Link href={id_attrib('#draft-', props.topic.id)} onClick={changePostStatus} size="sm">Entwurf</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link href={id_attrib('#published-', props.topic.id)} onClick={changePostStatus}>Publiziert</Nav.Link>
+                            <Nav.Link href={id_attrib('#published-', props.topic.id)} onClick={changePostStatus} size="sm">Publiziert</Nav.Link>
                         </Nav.Item>
                     </Nav>
                     {loading &&<Spinner animation="border" role="status" size="sm">
@@ -137,6 +146,13 @@ function TopicView(props) {
             </Card.Header>
             <Card.Body>
                 <TopicPostsListView posts={posts} topic={props.topic.id} nonce={props.nonce}/> 
+                <Pagination>
+                    <Pagination.First onClick={() => setCurrentPage(1)} disabled={(currentPage === 1)}/>
+                    <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} disabled={(currentPage === 1)}/>
+                    <Pagination.Item>{currentPage} / {totalPages}</Pagination.Item>
+                    <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} disabled={(totalPages <= 1 || currentPage === totalPages)}/>
+                    <Pagination.Last onClick={() => setCurrentPage(totalPages)} disabled={(totalPages <= 1 || currentPage === totalPages)}/>
+                </Pagination>
             </Card.Body>            
     </Card>
     );
