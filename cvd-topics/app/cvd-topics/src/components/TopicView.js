@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Button from 'react-bootstrap/Button';
 import Pagination from 'react-bootstrap/Pagination';
 import Toast from 'react-bootstrap/Toast';
 import Card from 'react-bootstrap/Card';
@@ -23,7 +22,9 @@ function TopicView(props) {
     const [, drop] = useDrop(() => ({
         accept: "cvd-topics-listitem",
         drop : (item, monitor) => {
-            setCvdTopic(item.id, props.topic, props.nonce);
+            setCvdTopic(item.id, function() {
+                item.callback(item);
+            });
         }
     }));
 
@@ -35,7 +36,7 @@ function TopicView(props) {
         setPostStatus(ns);
     }
 
-    function setCvdTopic(postid) {
+    function setCvdTopic(postid, callback) {
         setLoading(true);
         let set_id = ''; // if topic is -1, we want to remove the topic from the post
         if(props.topic.id !== -1) {
@@ -59,6 +60,8 @@ function TopicView(props) {
             (post) => {
                 setToast("Gespeichert");
                 fetchPosts();
+                callback();
+
             },
             (error) => {
                 setToast("Konnte nicht speichern.");
@@ -102,7 +105,7 @@ function TopicView(props) {
         return prefix + id;
     }
 
-    function onDrag(item, monitor) {
+    function onDrag(item) {
         // immediately remove the item from the list
         const new_posts = posts.filter((post) => post.id !== item.id);
         setPosts(new_posts);
