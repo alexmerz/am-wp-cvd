@@ -7,7 +7,7 @@ function TopicPostsListView(props) {
         return (<div> Keine Artikel </div>);
     }
 
-    const childs = props.posts.map((post) => <TopicPostListEntryView post={post} key={post.id}/>);
+    const childs = props.posts.map((post) => <TopicPostListEntryView post={post} key={post.id} onDrag={props.onDrag}/>);
     return (
         <ListGroup variant="flush">
             {childs}

@@ -9,6 +9,12 @@ function TopicPostListEntryView(props) {
     const [, drag] = useDrag(() => ({
         type: "cvd-topics-listitem",
         item : {id: props.post.id},
+        end : function(item, monitor) {
+            if(props.onDrag) {
+                props.onDrag(item, monitor);
+            }
+            return;
+        }
     }));
 
     return (

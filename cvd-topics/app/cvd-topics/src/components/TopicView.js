@@ -102,6 +102,14 @@ function TopicView(props) {
         return prefix + id;
     }
 
+    function onDrag(item, monitor) {
+        // immediately remove the item from the list
+        const new_posts = posts.filter((post) => post.id !== item.id);
+        setPosts(new_posts);
+        fetchPosts();
+        return;
+    }
+
     useEffect(() => {
        fetchPosts(); 
     }, [fetchPosts]); 
@@ -115,8 +123,7 @@ function TopicView(props) {
         }    
     }, [fetchPosts]);
 
-    return (
-        
+    return (        
         <Card ref={drop}>
             <Toast onClose={() => setToast(null)} show={toast} delay={3000} autohide>
             <Toast.Header>
@@ -145,14 +152,14 @@ function TopicView(props) {
                 </Navbar>
             </Card.Header>
             <Card.Body>
-                <TopicPostsListView posts={posts} topic={props.topic.id} nonce={props.nonce}/> 
-                <Pagination>
+                <TopicPostsListView posts={posts} topic={props.topic.id} nonce={props.nonce} onDrag={onDrag}/> 
+                {(totalPages>0) && <Pagination>
                     <Pagination.First onClick={() => setCurrentPage(1)} disabled={(currentPage === 1)}/>
                     <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} disabled={(currentPage === 1)}/>
                     <Pagination.Item>{currentPage} / {totalPages}</Pagination.Item>
                     <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} disabled={(totalPages <= 1 || currentPage === totalPages)}/>
                     <Pagination.Last onClick={() => setCurrentPage(totalPages)} disabled={(totalPages <= 1 || currentPage === totalPages)}/>
-                </Pagination>
+                </Pagination>}
             </Card.Body>            
     </Card>
     );
