@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/css/main.ec9b3cfd.css",
-    "main.js": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/js/main.de9f8dd6.js",
+    "main.css": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/css/main.1721b427.css",
+    "main.js": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/js/main.223f2636.js",
     "index.html": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/index.html",
-    "main.ec9b3cfd.css.map": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/css/main.ec9b3cfd.css.map",
-    "main.de9f8dd6.js.map": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/js/main.de9f8dd6.js.map"
+    "main.1721b427.css.map": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/css/main.1721b427.css.map",
+    "main.223f2636.js.map": "/wp-content/plugins/am-wp-cvd/cvd-topics/app/cvd-topics/build/static/js/main.223f2636.js.map"
   },
   "entrypoints": [
-    "static/css/main.ec9b3cfd.css",
-    "static/js/main.de9f8dd6.js"
+    "static/css/main.1721b427.css",
+    "static/js/main.223f2636.js"
   ]
 }
