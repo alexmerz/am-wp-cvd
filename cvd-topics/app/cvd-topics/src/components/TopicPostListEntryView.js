@@ -19,17 +19,17 @@ function TopicPostListEntryView(props) {
 
     const dt = DateTime.fromISO(post.date_gmt);
     let format = "dd.MM.yyyy, HH:mm";
-    let prefix = "geänd.: ";
+    let prefix = "geänd.:";
     if(dt.hasSame(new Date(), 'day')) {
         format = "HH:mm";
-        prefix = "geänd.: heute, ";
+        prefix = prefix + " heute, ";
     }
     const modified = prefix + dt.toFormat(format) + " Uhr";
 
     return (
         <ListGroup.Item ref={drag}>
             <div className="cvd-topics-listitem-title" dangerouslySetInnerHTML={{__html: post.title.rendered}} />
-            <div className="cvd-topics-listitem-modified" style={{ "font-size":"x-small" }}>({modified})</div>
+            <div className="cvd-topics-listitem-modified">({modified})</div>
             <div className="cvd-topics-listitem-menu"><a href={post.link} target="_blank" rel="noreferrer">Ansicht</a>|<a href={edit} target="_blank" rel="noreferrer">Bearbeiten</a></div>
         </ListGroup.Item>
         );
