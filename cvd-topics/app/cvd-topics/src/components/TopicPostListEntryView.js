@@ -22,9 +22,9 @@ function TopicPostListEntryView(props) {
     let prefix = "geänd.:";
     if(dt.hasSame(new Date(), 'day')) {
         format = "HH:mm";
-        prefix = prefix + " heute, ";
+        prefix = prefix + "heute, ";
     }
-    const modified = prefix + dt.toFormat(format) + " Uhr";
+    const modified = prefix + " " + dt.toFormat(format) + " Uhr";
 
     return (
         <ListGroup.Item ref={drag}>
