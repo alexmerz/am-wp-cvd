@@ -5,8 +5,8 @@
 namespace AM_WP_CVD\Topics;
 
 class Topics {
-    public const css_path = 'app/cvd-topics/build/static/css/';
-    public const js_path = 'app/cvd-topics/build/static/js/';
+    public const css_path = 'cvd-topics/build/static/css/';
+    public const js_path = 'cvd-topics/build/static/js/';
 
     public function __construct() {
         \add_action( 'admin_menu', [ $this, 'plugin_menu' ] );    
