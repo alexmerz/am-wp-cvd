@@ -11,8 +11,22 @@ class Topics {
     public function __construct() {
         \add_action( 'admin_menu', [ $this, 'plugin_menu' ] );    
         \add_action( 'init', [ $this, 'create_topics_nonhierarchical_taxonomy' ], 0 );
-        
+        \add_filter( 'post_class', [ $this, 'post_class' ], 10, 1 ); // exclude taxonomy from post_class       
         \add_filter( 'rest_post_query',[ $this, 'rest_post_query_notopics' ], 10, 2 );
+    }
+
+    /** 
+     * Do not include the taxonomy in the post's class attribute
+     * TODO: Should be replaxed with post_class_taxonomies filter present in WP 6.1
+     */
+    public function post_class( $classes ) {
+        $nclasses = array();
+        foreach( $classes as $c ) {
+            if( strpos( $c, 'cvd-topics-' ) === false ) {
+                $nclasses[] = $c;
+            }
+        }
+        return $nclasses;
     }
 
     /** 
