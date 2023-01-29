@@ -1,0 +1,24 @@
+.card {
+    max-width: 450px;
+    min-width: 450px !important;
+    max-height: 455px;
+    font-size: 14px;
+}
+
+.list-group {
+    max-height: 320px;
+    overflow-y: scroll;
+}
+
+.card-title.h5 {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.navbar-brand {
+    font-size: 16px !important;
+}
+
+.cvd-topics-listitem-modified {
+    font-size: 10px;
+}
