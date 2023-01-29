@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: am-wp-cvd\n"
+"POT-Creation-Date: 2023-01-29 22:50+0100\n"
+"PO-Revision-Date: 2023-01-29 23:01+0100\n"
+"Last-Translator: \n"
+"Language-Team: Alexander Merz\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ../cvd-topics\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: cvd-topics/node_modules\n"
+"X-Poedit-SearchPathExcluded-1: cvd-topics/build\n"
+"X-Poedit-SearchPathExcluded-2: cvd-topics/public\n"
+
+#: Topics.php:50 Topics.php:79 Topics.php:92
+msgid "Desk topics"
+msgstr ""
+
+#: Topics.php:80
+msgid "Desk topic"
+msgstr ""
+
+#: Topics.php:81
+msgid "Search desk topics"
+msgstr ""
+
+#: Topics.php:82
+msgid "Popular desk topics"
+msgstr ""
+
+#: Topics.php:83
+msgid "All desk topics"
+msgstr ""
+
+#: Topics.php:86
+msgid "Edit desk topic"
+msgstr ""
+
+#: Topics.php:87
+msgid "Update desk topic"
+msgstr ""
+
+#: Topics.php:88
+msgid "Add new desk topic"
+msgstr ""
+
+#: Topics.php:89
+msgid "New desk topic Name"
+msgstr ""
+
+#: Topics.php:90
+msgid "Add or remove desk topics"
+msgstr ""
+
+#: Topics.php:91
+msgid "Choose from the most used desk topics"
+msgstr ""

@@ -47,7 +47,7 @@ class Topics {
     }
 
     public function plugin_menu() {
-        \add_menu_page( 'CvD-Themen', 'CvD-Themen', 'edit_posts', 'topics', [$this, 'topics_page'], 'dashicons-admin-generic', 99 );
+        \add_menu_page( __( 'Desk topics', 'am-wp-cvd' ), __( 'Desk topics', 'am-wp-cvd' ), 'edit_posts', 'topics', [$this, 'topics_page'], 'dashicons-admin-generic', 99 );
     }
 
     public function topics_page() {
@@ -76,21 +76,20 @@ class Topics {
     public function create_topics_nonhierarchical_taxonomy() {  
         // Labels part for the GUI          
         $labels = array(
-            'name' => "CvD-Themen",
-            'singular_name' => "CvD-Thema",
-            'search_items' =>  __( 'Search Topics' ),
-            'popular_items' => __( 'Popular Topics' ),
-            'all_items' => __( 'All Topics' ),
+            'name' => \__( 'Desk topics', 'am-wp-cvd' ),
+            'singular_name' => \__( 'Desk topic', 'am-wp-cvd' ),
+            'search_items' =>  \__( 'Search desk topics', 'am-wp-cvd' ),
+            'popular_items' => \__( 'Popular desk topics', 'am-wp-cvd' ),
+            'all_items' => \__( 'All desk topics', 'am-wp-cvd' ),
             'parent_item' => null,
             'parent_item_colon' => null,
-            'edit_item' => __( 'Edit Topic' ), 
-            'update_item' => __( 'Update Topic' ),
-            'add_new_item' => __( 'Add New Topic' ),
-            'new_item_name' => __( 'New Topic Name' ),
-            // 'separate_items_with_commas' => __( 'Separate topics with commas' ),
-            'add_or_remove_items' => __( 'Add or remove topics' ),
-            'choose_from_most_used' => __( 'Choose from the most used topics' ),
-            'menu_name' => 'CvD-Themen'
+            'edit_item' => \__( 'Edit desk topic', 'am-wp-cvd' ), 
+            'update_item' => \__( 'Update desk topic', 'am-wp-cvd' ),
+            'add_new_item' => \__( 'Add new desk topic', 'am-wp-cvd' ),
+            'new_item_name' => \__( 'New desk topic Name', 'am-wp-cvd' ),            
+            'add_or_remove_items' => \__( 'Add or remove desk topics', 'am-wp-cvd' ),
+            'choose_from_most_used' => \__( 'Choose from the most used desk topics', 'am-wp-cvd' ),
+            'menu_name' => \__( 'Desk topics', 'am-wp-cvd' )
         ); 
 
         \register_taxonomy('cvd-topics', 'post', array(
