@@ -9,6 +9,7 @@ class Topics {
     public const js_path = 'cvd-topics/build/static/js/';
 
     public function __construct() {
+                \load_plugin_textdomain( 'am-wp-cvd', false, dirname( \plugin_basename( __FILE__ ) ) . '/../languages' );
         \add_action( 'admin_menu', [ $this, 'plugin_menu' ] );    
         \add_action( 'init', [ $this, 'create_topics_nonhierarchical_taxonomy' ], 0 );
         \add_filter( 'post_class', [ $this, 'post_class' ], 10, 1 ); // exclude taxonomy from post_class       
