@@ -16,8 +16,6 @@ define( 'AM_WP_CVD', '1.0.0' );
 // load language files
 \add_action( 'init', function() {    
     $s =  \load_plugin_textdomain( 'am-wp-cvd', false, dirname( \plugin_basename( __FILE__ ) ) . '/languages' );
-    error_log(  $s );
-    error_log( \__( 'Desk topics', 'am-wp-cvd' ) );
 });
 
 require __DIR__ . '/cvd-topics/Topics.php';
